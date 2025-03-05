@@ -1,17 +1,26 @@
 package com.github.xpenatan.gdx.backends.teavm.dom;
 
+import org.teavm.jso.JSObject;
+import org.teavm.jso.JSProperty;
+import org.teavm.jso.dom.events.EventTarget;
+
 /**
  * @author xpenatan
  */
-public interface EventWrapper {
+public interface EventWrapper extends JSObject {
 
+    @JSProperty
     String getType();
 
+    @JSProperty
     EventTargetWrapper getTarget();
 
-    public void preventDefault();
+    @JSProperty
+    EventTargetWrapper getCurrentTarget();
 
-    public void stopPropagation();
+    void preventDefault();
 
-    public float getDetail();
+    void stopPropagation();
+
+    float getDetail();
 }

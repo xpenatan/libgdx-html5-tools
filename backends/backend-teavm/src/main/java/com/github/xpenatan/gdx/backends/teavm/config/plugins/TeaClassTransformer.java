@@ -18,7 +18,6 @@ import com.github.xpenatan.gdx.backends.teavm.dom.ProgressEventWrapper;
 import com.github.xpenatan.gdx.backends.teavm.dom.StyleWrapper;
 import com.github.xpenatan.gdx.backends.teavm.dom.TouchEventWrapper;
 import com.github.xpenatan.gdx.backends.teavm.dom.TouchListWrapper;
-import com.github.xpenatan.gdx.backends.teavm.dom.TouchWrapper;
 import com.github.xpenatan.gdx.backends.teavm.dom.WebJSObject;
 import com.github.xpenatan.gdx.backends.teavm.dom.WheelEventWrapper;
 import com.github.xpenatan.gdx.backends.teavm.dom.XMLHttpRequestEventTargetWrapper;
@@ -41,6 +40,7 @@ import org.reflections.Reflections;
 import org.teavm.jso.JSFunctor;
 import org.teavm.jso.JSObject;
 import org.teavm.jso.JSProperty;
+import org.teavm.jso.dom.events.Event;
 import org.teavm.model.AnnotationContainer;
 import org.teavm.model.AnnotationHolder;
 import org.teavm.model.AnnotationValue;
@@ -141,6 +141,7 @@ public class TeaClassTransformer implements ClassHolderTransformer {
             setClassInterface(classHolder, JSObject.class);
             setClassAnnotation(classHolder, JSFunctor.class);
 
+            Event
             classHolder = findClassHolder(cls, context, EventWrapper.class);
             setClassInterface(classHolder, JSObject.class);
             setMethodAnnotation(classHolder, JSProperty.class, "getTarget", null);
@@ -174,12 +175,6 @@ public class TeaClassTransformer implements ClassHolderTransformer {
             classHolder = findClassHolder(cls, context, TouchListWrapper.class);
             setClassInterface(classHolder, JSObject.class);
             setMethodAnnotation(classHolder, JSProperty.class, "getLength", null);
-
-            classHolder = findClassHolder(cls, context, TouchWrapper.class);
-            setClassInterface(classHolder, JSObject.class);
-            setMethodAnnotation(classHolder, JSProperty.class, "getIdentifier", null);
-            setMethodAnnotation(classHolder, JSProperty.class, "getClientX", null);
-            setMethodAnnotation(classHolder, JSProperty.class, "getClientY", null);
 
             classHolder = findClassHolder(cls, context, DocumentWrapper.class);
             setClassInterface(classHolder, JSObject.class);

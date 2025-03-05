@@ -121,7 +121,12 @@ public class TeaApplication implements Application, Runnable {
         assetLoader = new AssetLoadImpl(hostPageBaseURL, graphics.canvas, this, assetDownload);
         AssetInstance.setInstance(assetLoader);
 
-        input = new TeaInput(this, graphics.canvas);
+        if(config.useUpdatedInputClass) {
+            input = new DefaultTeaInput(graphics.canvas, config);
+        }
+        else {
+            input = new TeaInputOld(this, graphics.canvas);
+        }
         files = new TeaFiles(config, this);
         net = new TeaNet();
         logger = new TeaApplicationLogger();

@@ -1,12 +1,16 @@
 package com.github.xpenatan.gdx.backends.teavm;
 
 
-import com.github.xpenatan.gdx.backends.teavm.assetloader.AssetLoader;
-
 /**
  * @author xpenatan
  */
 public class TeaApplicationConfiguration {
+
+    /**
+     * Use the new updated port from GWT or the old implementation. The old will be deleted soon.
+     */
+    @Deprecated()
+    boolean useUpdatedInputClass = true;
 
     /** Experimental, whether to enable OpenGL ES 30 (aka WebGL2) if supported. If not supported it will fall-back to OpenGL ES
      * 2.0. When GL ES 30 is enabled, {@link com.badlogic.gdx.Gdx#gl30} can be used to access its functionality.
@@ -100,6 +104,11 @@ public class TeaApplicationConfiguration {
      * Used for preloading asset and libraries
      */
     public TeaAssetPreloadListener preloadListener;
+
+    /** whether to use the accelerometer. default: true **/
+    public boolean useAccelerometer = true;
+    /** whether to use the gyroscope. default: false **/
+    public boolean useGyroscope = false;
 
     public boolean isFixedSizeApplication() {
         return width != 0 && height != 0;
